@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
+
+*,
+::before,
+::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+ul li {
+	list-style: none;
+}
+
+:root {
+	--brand-color: #56e0c5;
+	--brand-color2 : #d63384;
+	--primary-font: "Newsreader", serif;
+	--gray: #ecefed;
+	--white: white;
+	--black: black;
+	--radius: .625rem;
+}
+
+body {
+	background-color: var(--gray);
+	font-family: var(--primary-font);
+}
+
+img {
+	display: block;
+	width: 100%;
+}
+
+.page-width {
+	width: 65%;
+	margin: auto;
+}

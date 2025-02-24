@@ -1,0 +1,72 @@
+@import url("components.css");
+@import url("presets.css");
+
+/* ====================== HEADER ====================== */
+header {
+  background-color: var(--brand-color);
+	position: fixed;
+	top: 0; left: 0; right: 0;
+	padding: 2rem;
+}
+
+header .inner-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+header .inner-header .nav-links {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+header .inner-header .nav-link {
+	text-decoration: none;
+	text-transform: uppercase;
+	color: var(--black);
+	font-weight: 600;
+	letter-spacing: .125rem;
+	padding: .3rem 0;
+}
+
+header .inner-header .active-nav-link {
+	border-bottom: 4px solid var(--brand-color2);
+	border-radius: .25rem;
+}
+
+/* ====================== HERO ====================== */
+.hero img{
+	background-attachment: fixed;
+	height: 500px;
+	overflow: hidden;
+	object-fit: cover;
+}
+
+/* ====================== MAIN CONTENT ====================== */
+.main-content .intro {
+	margin: .6rem 0;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+
+.main-content .home-cards {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 1rem;
+}
+
+.main-content .home-card {
+	background-color: var(--white);
+	padding: 1rem;
+	border: 1px solid var(--gray);
+	border-radius: var(--radius);
+}
+
+
+/* ====================== LOGIN PAGE ====================== */
+.login-form {
+	margin-top: 8rem;
+}
