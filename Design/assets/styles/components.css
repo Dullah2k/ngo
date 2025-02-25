@@ -31,3 +31,35 @@
 	color: var(--brand-color2);
 	border: 2px solid var(--brand-color2);
 }
+
+/* ========================== TABLE STYLE ========================== */
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: .9rem;
+  font-family: var(--primary-font);
+  width: 100%;
+}
+
+.styled-table thead tr {
+  background-color: var(--brand-color);
+  color: #ffffff;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid var(--brand-color);
+}
