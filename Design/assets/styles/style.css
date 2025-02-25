@@ -1,0 +1,66 @@
+@import url("components.css");
+@import url("presets.css");
+
+/* ========================= HEADER =========================  */
+header {
+	position: fixed;
+	top: 0; left: 0; right: 0;
+	background-color: var(--white);
+}
+
+.inner-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 1.65rem;
+}
+
+.inner-header .notifications {
+	display: flex;
+	align-items: center;
+	gap: .6rem;
+}
+
+
+.inner-header nav {
+	display: flex;
+	align-items: center;
+	gap: 1.25rem;
+}
+
+.inner-header .nav-user img {
+  width: 3rem;
+	height: auto;
+	border-radius: 50%;
+	border: 2px solid var(--brand-color);
+}
+
+/* ========================= SIDEBAR =========================  */
+aside {
+	position: fixed;
+	top: 0; left: 0;
+	background-color: var(--white);
+	width: 300px;
+	padding: .3rem;
+	height: 100vh;
+}
+
+aside .logo {
+	margin: .75rem .3rem;
+}
+
+aside .side-item {
+	display: flex;
+	gap: .6rem;
+	text-decoration: none;
+	font-weight: 500;
+	padding: .6rem;
+	margin: .3rem 0;
+	color: var(--black);
+	border-radius: .25rem;
+}
+
+aside .active-item {
+	border-left: 3px solid var(--brand-color2);
+	background-color: var(--brand-color0);
+}
