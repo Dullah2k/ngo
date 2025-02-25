@@ -35,10 +35,10 @@
 /* ========================== TABLE STYLE ========================== */
 .styled-table {
   border-collapse: collapse;
-  margin: 25px 0;
+  margin: .6rem;
   font-size: .9rem;
   font-family: var(--primary-font);
-  width: 100%;
+  width: 98.5%;
 }
 
 .styled-table thead tr {
