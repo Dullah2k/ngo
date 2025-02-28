@@ -1,6 +1,7 @@
-{% extends "landing_page/base.html" %}
+{% extends "base.html" %}
 {% block title %} Homepage {% endblock %}
 
+{% load static %}
 {% block content %}
 
 <header>
@@ -11,7 +12,7 @@
 
 		<nav>
 			<ul class="nav-links">
-				<li>
+				<!-- <li>
 					<a href="#" class="nav-link active-nav-link">home</a>
 				</li>
 				
@@ -25,10 +26,10 @@
 				
 				<li>
 					<a href="#" class="nav-link">Contact us</a>
-				</li>
+				</li> -->
 				
 				<li>
-					<a href="login.html" class="btn btn-brand2">Sign in</a>
+					<a href="{% url 'user_auth:login' %}" class="btn btn-brand2">Sign in</a>
 				</li>
 				
 				<li>
