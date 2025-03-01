@@ -1,0 +1,74 @@
+{% extends 'landing_page/base.html' %}
+
+{% block content %}
+<div class="registration-form">
+  <h2>NGO Registration</h2>
+  
+  <form method="post">
+    {% csrf_token %}
+    
+    <div class="form-group">
+      {{ form.username.label_tag }}
+      {{ form.username }}
+      {{ form.username.errors }}
+    </div>
+
+    <div class="form-group">
+      {{ form.first_name.label_tag }}
+      {{ form.first_name }}
+      <small>Official Organization Name</small>
+      {{ form.first_name.errors }}
+    </div>
+
+    <div class="form-group">
+      {{ form.email.label_tag }}
+      {{ form.email }}
+      {{ form.email.errors }}
+    </div>
+
+    <div class="form-group">
+      {{ form.registration_number.label_tag }}
+      {{ form.registration_number }}
+      {{ form.registration_number.errors }}
+    </div>
+
+    <div class="form-group">
+      {{ form.phone_number.label_tag }}
+      {{ form.phone_number }}
+      <small>Format: +255XXXXXXXXX</small>
+      {{ form.phone_number.errors }}
+    </div>
+
+    <div class="form-group">
+      <label>Regions of Operation:</label>
+      <div class="checkbox-group">
+        {% for value, label in region_choices %}
+        <label>
+          <input type="checkbox" 
+                 name="regions_of_operation" 
+                 value="{{ value }}">
+          {{ label }}
+        </label>
+        {% endfor %}
+      </div>
+      {{ form.regions_of_operation.errors }}
+    </div>
+
+    <div class="form-group">
+      {{ form.password.label_tag }}
+      {{ form.password }}
+      {{ form.password.errors }}
+    </div>
+
+    <div class="form-group">
+      {{ form.password2.label_tag }}
+      {{ form.password2 }}
+      {{ form.password2.errors }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      Register Now
+    </button>
+  </form>
+</div>
+{% endblock %}
