@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %} {% endblock %}</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css">
+	<link rel="stylesheet" href="{% static 'assets/styles/style.css' %}">
+</head>
+<body>
+  <header>
+		<div class="inner-header">
+			<div class="logo">
+				<h2>logo</h2>
+			</div>
+
+			<nav>
+				<div class="notifications">
+					<div class="notification">
+						<i class="bi bi-bell"></i>
+					</div>
+					
+					<div class="messages">
+						<i class="bi bi-bell"></i>
+					</div>
+				</div>
+
+				<div class="nav-user">
+					<img src="assets/images/blank-profile-picture-973460_1280.png" alt="profile-img">
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<aside>
+		<div class="sidebar">
+			<div class="logo">
+				<h2> <div class="ngo">NGO</div> Connect</h2>
+			</div>
+			<hr>
+
+			<div class="side-nav">
+				<ul>
+					<li>
+						<a href="admin-dashboard.html" class="side-item active-item">
+							<i class="bi bi-grid"></i>
+							<p>Dashboard</p>
+						</a>
+					</li>
+
+					<li>
+						<a href="organizations.html" class="side-item">
+							<i class="bi bi-globe2"></i>
+							<p>Organizations</p>
+						</a>
+					</li>
+
+					<li>
+						<a href="projects.html" class="side-item">
+							<i class="bi bi-kanban"></i>
+							<p>Projects</p>
+						</a>
+					</li>
+					
+					<li>
+						<a href="stats.html" class="side-item">
+							<i class="bi bi-graph-up-arrow"></i>
+							<p>Statistics</p>
+						</a>
+					</li>
+					
+					<li>
+						<a href="finances" class="side-item">
+							<i class="bi bi-cash-coin"></i>
+							<p>Finances</p>
+						</a>
+					</li>
+					
+					<li>
+						<a href="data-verification.html" class="side-item">
+							<i class="bi bi-check-circle"></i>
+							<p>Data verification</p>
+						</a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+	</aside>
+
+  {% block content %}
+  {% endblock %}
+</body>
+</html>

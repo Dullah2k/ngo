@@ -1,0 +1,133 @@
+{% extends 'organization/base.html' %}
+{% block title %} Admin dashboard {% endblock %}
+{% block content %}
+<article class="main-content">
+  <div class="breadcrumb">
+    <a href="admin-dashboard.html" class="bread-item">
+      <i class="bi bi-house"></i>
+    </a>
+
+    <i class="bi bi-chevron-compact-right"></i>
+
+    <a href="admin-dashboard.html" class="bread-item">
+      <b>Dashboard</b>
+    </a>
+  </div>
+
+  <div class="dashboard-cards">
+    <div class="dashboard-card">
+      <div class="card-body">
+        <div class="icon">
+          <i class="bi bi-globe2"></i>
+        </div>
+
+        <div class="data">
+          <p class="title"> Organizations </p>
+          <b class="num">1,474</b>
+        </div>
+      </div>
+      <hr>
+      <div class="card-foot">
+        <i class="bi bi-info-circle"></i>
+        <p>Registered Organizations</p>
+        <b>+12</b>
+      </div>
+    </div>
+    
+    <div class="dashboard-card">
+      <div class="card-body">
+        <div class="icon">
+          <i class="bi bi-globe2"></i>
+        </div>
+
+        <div class="data">
+          <p class="title"> Projects </p>
+          <b class="num">3,474</b>
+        </div>
+      </div>
+      <hr>
+      <div class="card-foot">
+        <i class="bi bi-info-circle"></i>
+        <p>Active projecs</p>
+        <b>+3831</b>
+      </div>
+    </div>
+    
+    <div class="dashboard-card">
+      <div class="card-body">
+        <div class="icon">
+          <i class="bi bi-globe2"></i>
+        </div>
+
+        <div class="data">
+          <p class="title"> Organizations </p>
+          <b class="num">1,474</b>
+        </div>
+      </div>
+      <hr>
+      <div class="card-foot">
+        <i class="bi bi-info-circle"></i>
+        <p>Registered Organizations</p>
+        <b>+12</b>
+      </div>
+    </div>
+    
+    <div class="dashboard-card">
+      <div class="card-body">
+        <div class="icon">
+          <i class="bi bi-globe2"></i>
+        </div>
+
+        <div class="data">
+          <p class="title"> Organizations </p>
+          <b class="num">1,474</b>
+        </div>
+      </div>
+      <hr>
+      <div class="card-foot">
+        <i class="bi bi-info-circle"></i>
+        <p>Registered Organizations</p>
+        <b>+12</b>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="stats">
+    <div class="budget">
+      <h3>Budget Allocation</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora architecto eaque blanditiis iure eum quaerat doloribus deleniti, amet consequuntur libero asperiores ut quia temporibus eveniet voluptate inventore omnis obcaecati eius.</p>
+    </div>
+
+    <div class="top-org">
+      <h3>Top performing organizations</h3>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Active projects</th>
+            <th>Performance</th>
+            <th>Budget</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Kivulini</td>
+            <td>21</td>
+            <td> <div class="badge">good</div> </td>
+            <td>14,674,500</td>
+          </tr>
+          
+          <tr class="active-row">
+            <td>Msichana Tai</td>
+            <td>19</td>
+            <td> <div class="badge">good</div> </td>
+            <td>17,946,900</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</article>
+{% endblock %}

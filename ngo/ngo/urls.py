@@ -8,6 +8,7 @@ urlpatterns = [
   path('admin/', admin.site.urls),
   path('', include('landing_page.urls', namespace='landing_page')),
   path('user_auth/', include('user_auth.urls', namespace='user_auth')),
+  path('organization/', include('organization.urls', namespace='organization')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
