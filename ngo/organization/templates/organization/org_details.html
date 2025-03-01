@@ -1,0 +1,134 @@
+{% extends 'organization/base.html' %}
+{% block title %} Organizations Details {% endblock %}
+{% load organization_tags %}
+{% block content %}
+
+<style>
+.organization-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    color: #007bff;
+}
+
+dl {
+    display: grid;
+    grid-template-columns: max-content auto;
+    gap: 0.5rem 1rem;
+}
+
+dt {
+    font-weight: bold;
+    grid-column: 1;
+}
+
+dd {
+    grid-column: 2;
+    margin: 0;
+}
+
+.region-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: #e9ecef;
+    border-radius: 1rem;
+    margin: 0.25rem;
+}
+</style>
+
+<section class="main-content">
+  <div class="breadcrumb">
+    <a href="{% url 'organization:dashboard' %}" class="bread-item">
+      <i class="bi bi-house"></i>
+    </a>
+
+    <i class="bi bi-chevron-compact-right"></i>
+
+    <a href="{% url 'organization:organization_list' %}" class="bread-item">
+      <b>Organization List</b>
+    </a>
+
+    <i class="bi bi-chevron-compact-right"></i>
+
+    <a href="admin-dashboard.html" class="bread-item">
+      <b>{{ org.user.first_name }} Details</b>
+    </a>
+  </div>
+
+  <div class="organization-detail">
+      <a href="{% url 'organization:organization_list' %}" class="back-link">← Back to List</a>
+      
+      <h1>{{ org.user.first_name }}</h1>
+      
+      <div class="organization-info">
+          <div class="basic-info">
+              <h3>Basic Information</h3>
+              <dl>
+                  <dt>Registration Number:</dt>
+                  <dd>{{ org.registration_number }}</dd>
+                  
+                  <dt>Contact Email:</dt>
+                  <dd>{{ org.user.email }}</dd>
+                  
+                  <dt>Phone Number:</dt>
+                  <dd>{{ org.phone_number }}</dd>
+                  
+                  <dt>Website:</dt>
+                  <dd>
+                      {% if org.website %}
+                      <a href="{{ org.website }}" target="_blank">{{ org.website }}</a>
+                      {% else %}
+                      Not provided
+                      {% endif %}
+                  </dd>
+              </dl>
+          </div>
+  
+          <div class="compliance-info">
+              <h3>Compliance Status</h3>
+              <p class="status-{{ org.compliance_status }}">
+                  {{ compliance_status|get_item:org.compliance_status }}
+                  {% if org.is_verified %}(Verified){% endif %}
+              </p>
+              
+              <dl>
+                  <dt>Registration Date:</dt>
+                  <dd>{{ org.registration_date|default:"Not provided" }}</dd>
+                  
+                  <dt>Last Renewal Date:</dt>
+                  <dd>{{ org.last_renewal_date|default:"Not provided" }}</dd>
+              </dl>
+          </div>
+  
+          <div class="operations-info">
+              <h3>Operations</h3>
+              <dl>
+                  <dt>Regions of Operation:</dt>
+                  <dd>
+                      {% for region_code in org.regions_of_operation %}
+                      <span class="region-tag">{{ regions|get_item:region_code }}</span>
+                      {% endfor %}
+                  </dd>
+                  
+                  <dt>Annual Budget (TZS):</dt>
+                  <dd>
+                      {% if org.annual_budget %}
+                      {{ org.annual_budget|floatformat:"0" }}
+                      {% else %}
+                      Not disclosed
+                      {% endif %}
+                  </dd>
+              </dl>
+          </div>
+      </div>
+  </div>
+
+</section>
+{% endblock %}

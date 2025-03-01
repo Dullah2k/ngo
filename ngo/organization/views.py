@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from user_auth.models import OrganizationProfile
 
@@ -14,3 +14,16 @@ def organization_list(request):
     'region_choices': dict(OrganizationProfile.Region.choices)
   }
   return render(request, 'organization/orgs_list.html', context)
+
+def organization_detail(request, pk):
+  organization = get_object_or_404(
+    OrganizationProfile.objects.select_related('user'),
+    pk=pk
+  )
+  
+  context = {
+    'org': organization,
+    'compliance_status': dict(OrganizationProfile.ComplianceStatus.choices),
+    'regions': dict(OrganizationProfile.Region.choices)
+  }
+  return render(request, 'organization/org_details.html', context)

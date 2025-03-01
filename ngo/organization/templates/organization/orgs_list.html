@@ -36,25 +36,29 @@
         <tbody>
             {% for org in organizations %}
             <tr>
-                <td>{{ org.user.first_name }}</td>
-                <td>{{ org.registration_number }}</td>
-                <td>{{ org.user.email }}</td>
-                <td>{{ org.phone_number }}</td>
-                <td>
-                    {% for region_code in org.regions_of_operation %}
-                        {{ region_choices|get_item:region_code }}{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                </td>
-                <td class="status-{{ org.compliance_status }}">
-                    {{ compliance_status_choices|get_item:org.compliance_status }}
-                </td>
-                <td>
-                    {% if org.is_verified %}
-                        <span class="verified">✓</span>
-                    {% else %}
-                        <span class="not-verified">✗</span>
-                    {% endif %}
-                </td>
+              <td>
+                <a href="{% url 'organization:organization_detail' org.id %}">
+                  {{ org.user.first_name }}
+                </a>
+              </td>
+              <td>{{ org.registration_number }}</td>
+              <td>{{ org.user.email }}</td>
+              <td>{{ org.phone_number }}</td>
+              <td>
+                  {% for region_code in org.regions_of_operation %}
+                      {{ region_choices|get_item:region_code }}{% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+              </td>
+              <td class="status-{{ org.compliance_status }}">
+                  {{ compliance_status_choices|get_item:org.compliance_status }}
+              </td>
+              <td>
+                  {% if org.is_verified %}
+                      <span class="verified">✓</span>
+                  {% else %}
+                      <span class="not-verified">✗</span>
+                  {% endif %}
+              </td>
             </tr>
             {% empty %}
             <tr>
