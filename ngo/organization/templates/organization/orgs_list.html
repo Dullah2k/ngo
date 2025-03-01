@@ -1,0 +1,67 @@
+{% extends 'organization/base.html' %}
+{% block title %} Organizations List {% endblock %}
+{% load organization_tags %}
+{% block content %}
+<section class="main-content">
+  <div class="breadcrumb">
+    <a href="admin-dashboard.html" class="bread-item">
+      <i class="bi bi-house"></i>
+    </a>
+
+    <i class="bi bi-chevron-compact-right"></i>
+
+    <a href="admin-dashboard.html" class="bread-item">
+      <b>Dashboard</b>
+    </a>
+
+    <i class="bi bi-chevron-compact-right"></i>
+
+    <a href="admin-dashboard.html" class="bread-item">
+      <b>Organizations</b>
+    </a>
+  </div>
+    
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Organization Name</th>
+                <th>Registration Number</th>
+                <th>Contact Email</th>
+                <th>Phone Number</th>
+                <th>Regions of Operation</th>
+                <th>Compliance Status</th>
+                <th>Verified</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for org in organizations %}
+            <tr>
+                <td>{{ org.user.first_name }}</td>
+                <td>{{ org.registration_number }}</td>
+                <td>{{ org.user.email }}</td>
+                <td>{{ org.phone_number }}</td>
+                <td>
+                    {% for region_code in org.regions_of_operation %}
+                        {{ region_choices|get_item:region_code }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+                <td class="status-{{ org.compliance_status }}">
+                    {{ compliance_status_choices|get_item:org.compliance_status }}
+                </td>
+                <td>
+                    {% if org.is_verified %}
+                        <span class="verified">✓</span>
+                    {% else %}
+                        <span class="not-verified">✗</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">No organizations registered yet</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}
