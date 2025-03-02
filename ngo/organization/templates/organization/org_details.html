@@ -63,7 +63,13 @@ dd {
   </div>
 
   <div class="organization-detail">
-      <a href="{% url 'organization:organization_list' %}" class="back-link">← Back to List</a>
+    {% if user == org.user or user.is_staff %}
+      <div class="edit-link">
+        <a href="{% url 'organization:edit_organization' org.id %}" class="btn-edit">
+          <i class="bi bi-pencil"></i> Edit Profile
+        </a>
+      </div>
+    {% endif %}
       
       <h1>{{ org.user.first_name }}</h1>
       

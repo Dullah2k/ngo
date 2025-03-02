@@ -49,3 +49,5 @@ class OrganizationRegistrationForm(forms.ModelForm):
     if OrganizationProfile.objects.filter(registration_number=number).exists():
       raise forms.ValidationError("This registration number is already in use.")
     return number
+  
+  

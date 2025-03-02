@@ -1,0 +1,67 @@
+{% extends 'organization/base.html' %}
+{% block title %} Edit Organization {% endblock %}
+{% load organization_tags %}
+{% block content %}
+
+<style>
+  .edit-form {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  .helptext {
+    font-size: 0.9rem;
+    color: #666;
+    display: block;
+    margin-top: 0.25rem;
+  }
+  .errorlist {
+    color: #dc3545;
+    margin: 0.5rem 0;
+    padding-left: 1rem;
+  }
+</style>
+
+<section class="main-content">
+  <div class="breadcrumb">
+    <a href="{% url 'organization:organization_list' %}" class="bread-item">
+      <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+  </div>
+
+  <div class="edit-form">
+    <h2>Edit {{ org.user.first_name }}'s Profile</h2>
+    
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      {% for field in form %}
+        <div class="form-group">
+          {{ field.label_tag }}
+          {% if field.help_text %}
+            <span class="helptext">{{ field.help_text }}</span>
+          {% endif %}
+          {{ field }}
+          {{ field.errors }}
+        </div>
+      {% endfor %}
+      
+      <div class="form-group">
+        <button type="submit" class="btn-save">Save Changes</button>
+        <a href="{% url 'organization:organization_detail' org.id %}" class="btn-cancel">Cancel</a>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}
