@@ -97,3 +97,22 @@ def project_list(request):
         'status_choices': dict(Project.Status.choices),
         'funding_choices': dict(Project.FundingType.choices)
     })
+
+def project_detail(request, pk):
+    project = get_object_or_404(
+        Project.objects.select_related('organization'),
+        pk=pk
+    )
+    
+    # Get related organization profile
+    organization_profile = project.organization.organization_profile
+    
+    context = {
+        'project': project,
+        'organization': organization_profile,
+        'status_choices': dict(Project.Status.choices),
+        'funding_choices': dict(Project.FundingType.choices),
+        'region_choices': dict(OrganizationProfile.Region.choices)
+    }
+    return render(request, 'organization/project/details.html', context)
+

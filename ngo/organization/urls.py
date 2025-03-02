@@ -11,4 +11,5 @@ urlpatterns = [
 
   path('organization/projects/create/', views.create_project, name='create_project'),
   path('organization/projects/list', views.project_list, name='project_list'),
+  path('organization/projects/<int:pk>/', views.project_detail, name='project_detail'),
 ]

@@ -1,5 +1,5 @@
 {% extends 'organization/base.html' %}
-{% block title %}Create New Project{% endblock %}
+{% block title %}Projects List{% endblock %}
 {% load organization_tags %}
 {% block content %}
 
@@ -83,7 +83,7 @@
               {% for project in projects %}
               <tr>
                   <td>
-                      <a href="#">
+                      <a href="{% url 'organization:project_detail' project.pk %}">
                           {{ project.name }}
                       </a>
                   </td>
