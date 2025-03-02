@@ -1,0 +1,116 @@
+{% extends 'organization/base.html' %}
+{% block title %}Create New Project{% endblock %}
+
+{% block content %}
+
+<style>
+    /* Add to your existing CSS */
+  .project-form-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  .project-form .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .project-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .project-form input[type="text"],
+  .project-form textarea,
+  .project-form input[type="date"],
+  .project-form input[type="file"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  .project-form .form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .form-help {
+    color: #6c757d;
+    font-size: 0.875rem;
+    display: block;
+    margin-top: 0.25rem;
+  }
+</style>
+
+<section class="main-content">
+  <div class="breadcrumb">
+    <a href="{% url 'organization:dashboard' %}" class="bread-item">
+      <i class="bi bi-house"></i> Dashboard
+    </a>
+    <i class="bi bi-chevron-compact-right"></i>
+    <span class="bread-item current">New Project</span>
+  </div>
+
+  <div class="project-form-container">
+    <h2>Start a New Project</h2>
+    
+    <form method="post" enctype="multipart/form-data" class="project-form">
+      {% csrf_token %}
+      
+      <div class="form-group">
+        {{ form.title.label_tag }}
+        {{ form.title }}
+        <small class="form-help">{{ form.title.help_text }}</small>
+        {{ form.title.errors }}
+      </div>
+
+      <div class="form-group">
+        {{ form.description.label_tag }}
+        {{ form.description }}
+        {{ form.description.errors }}
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          {{ form.start_date.label_tag }}
+          {{ form.start_date }}
+          {{ form.start_date.errors }}
+        </div>
+        <div class="form-group">
+          {{ form.end_date.label_tag }}
+          {{ form.end_date }}
+          <small class="form-help">{{ form.end_date.help_text }}</small>
+          {{ form.end_date.errors }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        {{ form.project_document.label_tag }}
+        {{ form.project_document }}
+        <small class="form-help">{{ form.project_document.help_text }}</small>
+        {{ form.project_document.errors }}
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Create Project</button>
+        <a href="{% url 'organization:dashboard' %}" class="btn btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

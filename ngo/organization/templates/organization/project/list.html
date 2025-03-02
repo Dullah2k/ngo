@@ -1,0 +1,9 @@
+{% extends 'organization/base.html' %}
+{% block title %}Create New Project{% endblock %}
+
+{% block content %}
+<h2>project list</h2>
+<a href="{% url 'organization:project_create' %}" class="btn btn-success">
+  <i class="bi bi-plus-lg"></i> Start New Project
+</a>
+{% endblock %}
