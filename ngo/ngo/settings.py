@@ -39,7 +39,7 @@ INSTALLED_APPS = [
   'django.contrib.messages',
   'django.contrib.staticfiles',
   'landing_page.apps.LandingPageConfig',
-  'organization.apps.OrganizationConfig'
+  'organization.apps.OrganizationConfig',
 ]
 
 MIDDLEWARE = [
@@ -82,6 +82,8 @@ DATABASES = {
     'NAME': 'ngo_db',
     'USER': 'ngo',
     'PASSWORD': 'qwerty123',
+    'HOST': 'localhost',
+    'PORT': '5432',
   }
 }
 

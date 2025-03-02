@@ -2,6 +2,9 @@
 from django import forms
 from django.contrib.auth.models import User
 from user_auth.models import OrganizationProfile
+from django.utils import timezone
+from .models import Project
+
 
 class OrganizationProfileForm(forms.ModelForm):
     regions_of_operation = forms.MultipleChoiceField(
@@ -29,23 +32,33 @@ class OrganizationProfileForm(forms.ModelForm):
                 if field in self.fields:
                     del self.fields[field]
 
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = [
+            'name',
+            'description',
+            'start_date',
+            'end_date',
+            'status',
+            'funding_type',
+            'budget',
+            'target_regions',
+            'beneficiaries'
+        ]
+        widgets = {
+            'start_date': forms.DateInput(attrs={'type': 'date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date'}),
+            'target_regions': forms.CheckboxSelectMultiple,
+            'description': forms.Textarea(attrs={'rows': 4}),
+        }
 
-# class OrganizationEditForm(forms.ModelForm):
-#   class Meta:
-#     model = OrganizationProfile
-#     fields = [
-#       'phone_number',
-#       'regions_of_operation',
-#       'website',
-#       'annual_budget',
-#       'registration_date',
-#       'date_established',
-#       'registration_certificate'
-#     ]
-#     widgets = {
-#       'regions_of_operation': forms.CheckboxSelectMultiple,
-#       'registration_date': forms.DateInput(attrs={'type': 'date'}),
-#       'date_established': forms.DateInput(attrs={'type': 'date'})
-#     }
+    def clean_end_date(self):
+        start_date = self.cleaned_data.get('start_date')
+        end_date = self.cleaned_data.get('end_date')
+        
+        if end_date and start_date and end_date < start_date:
+            raise forms.ValidationError("End date cannot be before the start date.")
+        return end_date
 
 

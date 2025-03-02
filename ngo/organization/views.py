@@ -1,8 +1,9 @@
 from django.http import HttpResponseForbidden
+from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from user_auth.models import OrganizationProfile
-from organization.forms import OrganizationProfileForm
+from organization.forms import OrganizationProfileForm, ProjectForm
 
 def dashboard(request):
   return render(request, 'organization/dashboard.html')
@@ -57,3 +58,29 @@ def edit_organization(request, pk):
         'compliance_status_choices': dict(OrganizationProfile.ComplianceStatus.choices)
     }
     return render(request, 'organization/org_edit.html', context)
+
+@login_required
+def create_project(request):
+    organization = get_object_or_404(
+        OrganizationProfile,
+        user=request.user
+    )
+    
+    if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.organization = request.user
+            project.save()
+            form.save_m2m()  # Save many-to-many data for target_regions
+            messages.success(request, 'Project created successfully!')
+            return redirect('organization:dashboard')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = ProjectForm()
+
+    return render(request, 'organization/project/create.html', {
+        'form': form,
+        'organization': organization
+    })
