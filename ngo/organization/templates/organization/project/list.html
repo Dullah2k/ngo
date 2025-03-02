@@ -1,9 +1,128 @@
 {% extends 'organization/base.html' %}
 {% block title %}Create New Project{% endblock %}
-
+{% load organization_tags %}
 {% block content %}
-<h2>project list</h2>
-<a href="{% url 'organization:project_create' %}" class="btn btn-success">
-  <i class="bi bi-plus-lg"></i> Start New Project
-</a>
+
+<style>
+  /* Add to your existing CSS */
+.project-list {
+    padding: 2rem;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.project-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.project-table th,
+.project-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.project-table th {
+    background-color: #f8f9fa;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+}
+
+.status-PLAN { background-color: #ffc107; color: #000; }
+.status-ONGO { background-color: #28a745; color: #fff; }
+.status-COMP { background-color: #007bff; color: #fff; }
+.status-SUSP { background-color: #dc3545; color: #fff; }
+
+.actions .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.no-projects {
+    text-align: center;
+    padding: 4rem;
+    border: 2px dashed #dee2e6;
+    border-radius: 0.5rem;
+}
+</style>
+
+<div class="main-content">
+  <div class="project-list">
+      <div class="list-header">
+          <h2>Your Projects</h2>
+          <a href="{% url 'organization:create_project' %}" class="btn btn-primary">
+              + New Project
+          </a>
+      </div>
+  
+      {% if projects %}
+      <table class="styled-table">
+          <thead>
+              <tr>
+                  <th>Project Name</th>
+                  <th>Status</th>
+                  <th>Start Date</th>
+                  <th>Budget (TZS)</th>
+                  <th>Beneficiaries</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for project in projects %}
+              <tr>
+                  <td>
+                      <a href="#">
+                          {{ project.name }}
+                      </a>
+                  </td>
+                  <td>
+                      <span class="status-badge status-{{ project.status }}">
+                          {{ status_choices|get_item:project.status }}
+                      </span>
+                  </td>
+                  <td>{{ project.start_date|date:"M d, Y" }}</td>
+                  <td>
+                      {% if project.budget %}
+                          {{ project.budget|floatformat:"0" }}
+                      {% else %}
+                          -
+                      {% endif %}
+                  </td>
+                  <td>
+                      {{ project.beneficiaries|default:"-" }}
+                  </td>
+                  <td class="actions">
+                      <a href="#" class="btn btn-sm btn-view">
+                          View
+                      </a>
+                  </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+      {% else %}
+      <div class="no-projects">
+          <p>No projects found. Create your first project!</p>
+          <a href="{% url 'create_project' %}" class="btn btn-primary">
+              Create Project
+          </a>
+      </div>
+      {% endif %}
+  </div>
+
+</div>
 {% endblock %}
+
+{% url 'project_detail' project.pk %}

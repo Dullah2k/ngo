@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from user_auth.models import OrganizationProfile
 from organization.forms import OrganizationProfileForm, ProjectForm
+from .models import Project
 
 def dashboard(request):
   return render(request, 'organization/dashboard.html')
@@ -83,4 +84,16 @@ def create_project(request):
     return render(request, 'organization/project/create.html', {
         'form': form,
         'organization': organization
+    })
+
+@login_required
+def project_list(request):
+    projects = Project.objects.filter(
+        organization=request.user
+    ).order_by('-created_at')
+    
+    return render(request, 'organization/project/list.html', {
+        'projects': projects,
+        'status_choices': dict(Project.Status.choices),
+        'funding_choices': dict(Project.FundingType.choices)
     })
