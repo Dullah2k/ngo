@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<header>
+	<!-- <header>
 		<div class="inner-header page-width">
 			<div class="logo">
 				<h2> <div class="ngo">NGO</div> Connect</h2>
@@ -43,10 +43,10 @@
 				</ul>
 			</nav>
 		</div>
-	</header>
+	</header> -->
 
 	<article class="page-width">
-		<article class="login-form">
+		<!-- <article class="login-form">
 			<h2>Sign in to your Account</h2>
 			<div class="message">
 				<i></i>
@@ -84,8 +84,109 @@
 
         <a href="#">Forgot your password?</a>
 			</form>
-		</article>
-
+		</article> -->
+    <div class="registration-form">
+      <h2>NGO Registration</h2>
+      
+      <form method="post">
+        <input type="hidden" name="csrfmiddlewaretoken" value="5h7GbInB90YoZbkDTgBOCalEVHhIoLkUOg9B2bSJxcaCRiDN5iGy9MS924ByywF2">
+        
+        <div class="form-group">
+          <label for="id_username">Username:</label>
+          <input type="text" name="username" maxlength="150" required="" id="id_username">
+        </div>
+    
+        <div class="form-group">
+          <label for="id_first_name">Organization Name:</label>
+          <input type="text" name="first_name" maxlength="150" id="id_first_name">
+          <small>Official Organization Name</small>
+        </div>
+    
+        <div class="form-group">
+          <label for="id_email">Email address:</label>
+          <input type="email" name="email" maxlength="254" id="id_email">
+          
+        </div>
+    
+        <div class="form-group">
+          <label for="id_registration_number">NGO Registration Number:</label>
+          <input type="text" name="registration_number" maxlength="20" required="" id="id_registration_number">
+          
+        </div>
+    
+        <div class="form-group">
+          <label for="id_phone_number">Phone Number:</label>
+          <input type="text" name="phone_number" maxlength="15" required="" id="id_phone_number">
+          <small>Format: +255XXXXXXXXX</small>
+          
+        </div>
+    
+        <div class="form-group">
+          <label>Regions of Operation:</label>
+          
+          <div class="checkbox-group">
+            
+            <label>
+              <input type="checkbox" name="regions_of_operation" value="DAR">
+              Dar es Salaam
+            </label>
+            
+            <label>
+              <input type="checkbox" name="regions_of_operation" value="DSM">
+              Dodoma
+            </label>
+            
+            <label>
+              <input type="checkbox" name="regions_of_operation" value="ARU">
+              Arusha
+            </label>
+            
+            <label>
+              <input type="checkbox" name="regions_of_operation" value="MBY">
+              Mbeya
+            </label>
+            
+            <label>
+              <input type="checkbox" name="regions_of_operation" value="MWA">
+              Mwanza
+            </label>
+            
+            <label>
+              <input type="checkbox" name="regions_of_operation" value="ZNZ">
+              Zanzibar
+            </label>
+            
+            <label>
+              <input type="checkbox" name="regions_of_operation" value="KIG">
+              Kigoma
+            </label>
+            
+            <label>
+              <input type="checkbox" name="regions_of_operation" value="TAN">
+              Tanga
+            </label>
+            
+          </div>
+          
+        </div>
+    
+        <div class="form-group">
+          <label for="id_password">Password:</label>
+          <input type="password" name="password" minlength="8" required="" id="id_password">
+          
+        </div>
+    
+        <div class="form-group">
+          <label for="id_password2">Repeat password:</label>
+          <input type="password" name="password2" required="" id="id_password2">
+          
+        </div>
+    
+        <button type="submit" class="btn btn-primary">
+          Register Now
+        </button>
+      </form>
+    </div>
 	</article>
 
 </body>
