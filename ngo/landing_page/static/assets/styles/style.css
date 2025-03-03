@@ -97,6 +97,10 @@ aside .side-item .bi-check-circle {
 
 .breadcrumb a {
   text-decoration: none;
+  color: gray;
+}
+
+.breadcrumb .active {
   color: var(--black);
 }
 
