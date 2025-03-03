@@ -21,7 +21,6 @@ header {
 	gap: .6rem;
 }
 
-
 .inner-header nav {
 	display: flex;
 	align-items: center;
@@ -89,7 +88,7 @@ aside .side-item .bi-check-circle {
   color: var(--bs-indigo);
 }
 
-/* ========================= MAIN CONTENT =========================  */
+/* ========================= MAIN CONTENT/DASHBOARD =========================  */
 .breadcrumb {
   background-color: var(--white);
   padding: .6rem;
@@ -129,7 +128,7 @@ aside .side-item .bi-check-circle {
 }
 
 
-.dashboard-card .icon {
+.dashboard-card .bi {
   background-color: var(--brand-color);
   padding: .6rem;
   font-size: 2rem;
@@ -137,6 +136,23 @@ aside .side-item .bi-check-circle {
   border-radius: .325rem;
   color: var(--white);
 }
+
+.dashboard-card .bi-globe2 {
+  background-color: var(--bs-blue);
+}
+
+.dashboard-card .bi-kanban {
+  background-color: var(--bs-yellow);
+}
+
+.dashboard-card .bi-graph-up-arrow {
+  background-color: var(--bs-green);
+}
+
+.dashboard-card .bi-cash-coin {
+  background-color: var(--bs-cyan);
+}
+
 
 .main-content {
   margin: 5.55rem 0 0 300px;
