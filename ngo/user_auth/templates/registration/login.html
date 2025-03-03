@@ -2,19 +2,23 @@
 {% block title %} Sign in  {% endblock %}
 
 {% block content %}
-  <section class="dynamic-width">
-    <form action="" method="post" class="form-width labaled-form">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="btn brand">Login</button>
-      
-      <a href="" class="">
-        <p>
-          <i class="bi bi-exclamation-circle"></i>
-          Create account
-        </p>
-      </a>
-    </form>
+  <section class="page-width">
+    <div class="login-form">
+      <form action="" method="post" class="form-width labaled-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+  
+        <button type="submit" class="btn btn-brand mtb-1">Login</button>
+        
+        <a href="{% url 'user_auth:organization_registration' %}" class="">
+          <p>
+            <i class="bi bi-exclamation-circle"></i>
+            Create account
+          </p>
+        </a>
+      </form>
+
+    </div>
 
   </section>
 {% endblock %}
