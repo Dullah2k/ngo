@@ -90,7 +90,14 @@ header .inner-header .active-nav-link {
 
 /* ====================== REGISTER PAGE ====================== */
 .registration-form {
-  margin: 2rem auto 0;  
+  margin: 10rem auto 0;  
+
+}
+
+.registration-form form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 
 .registration-form h2 {
@@ -114,6 +121,6 @@ header .inner-header .active-nav-link {
 
 .registration-form .checkbox-group {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   margin: .3rem 0;
 }

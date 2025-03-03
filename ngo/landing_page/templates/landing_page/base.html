@@ -9,6 +9,26 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css">
 </head>
 <body>
+  <header>
+    <div class="inner-header page-width">
+      <div class="logo">
+        <h2> <div class="ngo">NGO</div> Connect</h2>
+      </div>
+  
+      <nav>
+        <ul class="nav-links">
+          <li>
+            <a href="{% url 'user_auth:login' %}" class="btn btn-brand2">Sign in</a>
+          </li>
+          
+          <li>
+            <a href="register.html" class="btn btn-brand2-outline">Register</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
 	{% block content %}
   {% endblock %}
 </body>
