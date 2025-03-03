@@ -3,46 +3,6 @@
 {% load organization_tags %}
 {% block content %}
 
-<style>
-.organization-info {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.back-link {
-    display: inline-block;
-    margin-bottom: 1rem;
-    text-decoration: none;
-    color: #007bff;
-}
-
-dl {
-    display: grid;
-    grid-template-columns: max-content auto;
-    gap: 0.5rem 1rem;
-}
-
-dt {
-    font-weight: bold;
-    grid-column: 1;
-}
-
-dd {
-    grid-column: 2;
-    margin: 0;
-}
-
-.region-tag {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background-color: #e9ecef;
-    border-radius: 1rem;
-    margin: 0.25rem;
-}
-</style>
-
 <section class="main-content">
   <div class="breadcrumb">
     <a href="{% url 'organization:dashboard' %}" class="bread-item">
