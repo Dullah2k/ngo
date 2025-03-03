@@ -57,35 +57,44 @@ dd {
 
     <i class="bi bi-chevron-compact-right"></i>
 
-    <a href="admin-dashboard.html" class="bread-item">
+    <a href="admin-dashboard.html" class="bread-item active">
       <b>{{ org.user.first_name }} Details</b>
     </a>
   </div>
 
   <div class="organization-detail">
-    {% if user == org.user or user.is_staff %}
-      <div class="edit-link">
-        <a href="{% url 'organization:edit_organization' org.id %}" class="btn-edit">
-          <i class="bi bi-pencil"></i> Edit Profile
-        </a>
+      <div class="top">
+        <h1>{{ org.user.first_name }}</h1>
+  
+        {% if user == org.user or user.is_staff %}
+          <div class="edit-link">
+            <a href="{% url 'organization:edit_organization' org.id %}" class="btn btn-brand">
+              <i class="bi bi-pencil"></i> Edit Profile
+            </a>
+          </div>
+        {% endif %}
       </div>
-    {% endif %}
-      
-      <h1>{{ org.user.first_name }}</h1>
-      
+      <hr>
       <div class="organization-info">
           <div class="basic-info">
               <h3>Basic Information</h3>
               <dl>
+                <div class="detail-item">
                   <dt>Registration Number:</dt>
                   <dd>{{ org.registration_number }}</dd>
-                  
+                </div>
+                
+                <div class="detail-item">
                   <dt>Contact Email:</dt>
                   <dd>{{ org.user.email }}</dd>
-                  
+                </div>
+                
+                <div class="detail-item">
                   <dt>Phone Number:</dt>
                   <dd>{{ org.phone_number }}</dd>
-                  
+                </div>
+                
+                <div class="detail-item">
                   <dt>Website:</dt>
                   <dd>
                       {% if org.website %}
@@ -94,35 +103,45 @@ dd {
                       Not provided
                       {% endif %}
                   </dd>
+                </div>
               </dl>
           </div>
   
           <div class="compliance-info">
               <h3>Compliance Status</h3>
-              <p class="status-{{ org.compliance_status }}">
-                  {{ compliance_status|get_item:org.compliance_status }}
-                  {% if org.is_verified %}(Verified){% endif %}
-              </p>
+              <div class="detail-item">
+                <p class="status-{{ org.compliance_status }}">
+                    {{ compliance_status|get_item:org.compliance_status }}
+                    {% if org.is_verified %}(Verified){% endif %}
+                </p>
+              </div>
               
               <dl>
+                <div class="detail-item">
                   <dt>Registration Date:</dt>
                   <dd>{{ org.registration_date|default:"Not provided" }}</dd>
+                </div>
                   
+                <div class="detail-item">
                   <dt>Last Renewal Date:</dt>
                   <dd>{{ org.last_renewal_date|default:"Not provided" }}</dd>
+                </div>
               </dl>
           </div>
   
           <div class="operations-info">
               <h3>Operations</h3>
               <dl>
+                <div class="detail-item">
                   <dt>Regions of Operation:</dt>
                   <dd>
                       {% for region_code in org.regions_of_operation %}
                       <span class="region-tag">{{ regions|get_item:region_code }}</span>
                       {% endfor %}
                   </dd>
-                  
+                </div>
+                
+                <div class="detail-item">
                   <dt>Annual Budget (TZS):</dt>
                   <dd>
                       {% if org.annual_budget %}
@@ -131,6 +150,7 @@ dd {
                       Not disclosed
                       {% endif %}
                   </dd>
+                </div>
               </dl>
           </div>
       </div>

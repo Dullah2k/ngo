@@ -179,3 +179,56 @@ aside .side-item .bi-check-circle {
   padding: .6rem;
   border-radius: .35rem;
 }
+
+/* ========================= ORGANIZATION DETAILS =========================  */
+.main-content .organization-detail {
+  background-color: var(--white);
+  margin: .6rem;
+  padding: .6rem;
+}
+
+.main-content .organization-detail .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-content .organization-detail hr {
+  margin: .6rem 0;
+}
+
+.main-content .organization-detail h1 {
+  text-transform: capitalize;
+}
+
+.main-content .organization-detail h3 {
+  margin-bottom: .15rem;
+}
+
+.main-content .organization-detail .organization-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .6rem;
+}
+
+.main-content .organization-detail .detail-item {
+  background-color: var(--gray);
+  margin: .6rem 0;
+  padding: .6rem;
+  border-radius: .35rem;
+}
+
+.main-content .organization-detail .detail-item dd {
+  background-color: var(--white);
+  padding: .3rem;
+  margin-top: .3rem;
+  font-weight: 600;
+}
+
+.main-content .organization-detail .detail-item .region-tag {
+  display: inline-block;
+  background-color: var(--gray);
+  padding: .3rem;
+  border-radius: .25rem;
+  font-size: small;
+}
