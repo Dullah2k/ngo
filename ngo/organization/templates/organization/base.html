@@ -42,21 +42,21 @@
 
 			<div class="side-nav">
 				<ul>
-					<li>
-						<a href="admin-dashboard.html" class="side-item active-item">
+					<li {% if section == 'dashboard' %}class="active-item"{% endif %}>
+						<a href="{% url 'organization:dashboard' %}" class="side-item">
 							<i class="bi bi-grid"></i>
 							<p>Dashboard</p>
 						</a>
 					</li>
 
-					<li>
+					<li {% if section == 'organization' %}class="active-item"{% endif %}>
 						<a href="{% url 'organization:organization_list' %}" class="side-item">
 							<i class="bi bi-globe2"></i>
 							<p>Organizations</p>
 						</a>
 					</li>
 
-					<li>
+					<li {% if section == 'project' %}class="active-item"{% endif %}>
 						<a href="{% url 'organization:project_list' %}" class="side-item">
 							<i class="bi bi-kanban"></i>
 							<p>Projects</p>
@@ -64,13 +64,13 @@
 					</li>
 					
 					<li>
-						<a href="stats.html" class="side-item">
+						<a href="#" class="side-item">
 							<i class="bi bi-graph-up-arrow"></i>
-							<p>Analytics and reports</p>
+							<p>Reports and Analytics</p>
 						</a>
 					</li>
 					
-					<li>
+					<!-- <li>
 						<a href="finances" class="side-item">
 							<i class="bi bi-cash-coin"></i>
 							<p>Financial Tracking</p>
@@ -89,7 +89,7 @@
 							<i class="bi bi-check-circle"></i>
 							<p>Public Feedback Portal</p>
 						</a>
-					</li>
+					</li> -->
 					
 					<li>
 						<a href="{% url 'user_auth:logout' %}" class="side-item">
@@ -97,14 +97,6 @@
 							<p>Log out</p>
 						</a>
 					</li>
-
-          <li>
-						<a href="{% url 'organization:create_project' %}" class="side-item">
-							<i class="bi bi-check-circle"></i>
-							<p>Create Project</p>
-						</a>
-					</li>
-
 				</ul>
 			</div>
 		</div>

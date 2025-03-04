@@ -7,12 +7,13 @@ from organization.forms import OrganizationProfileForm, ProjectForm
 from .models import Project
 
 def dashboard(request):
-  return render(request, 'organization/dashboard.html')
+  return render(request, 'organization/dashboard.html', {'section':'dashboard'})
 
 def organization_list(request):
   organizations = OrganizationProfile.objects.select_related('user').all()
   
   context = {
+    'section':'organization',
     'organizations': organizations,
     'compliance_status_choices': dict(OrganizationProfile.ComplianceStatus.choices),
     'region_choices': dict(OrganizationProfile.Region.choices)
@@ -26,6 +27,7 @@ def organization_detail(request, pk):
   )
   
   context = {
+    'section':'organization',
     'org': organization,
     'compliance_status': dict(OrganizationProfile.ComplianceStatus.choices),
     'regions': dict(OrganizationProfile.Region.choices)
@@ -53,6 +55,7 @@ def edit_organization(request, pk):
         form = OrganizationProfileForm(instance=organization, user=request.user)
     
     context = {
+        'section':'organization',
         'form': form,
         'org': organization,
         'region_choices': dict(OrganizationProfile.Region.choices),
@@ -82,8 +85,9 @@ def create_project(request):
         form = ProjectForm()
 
     return render(request, 'organization/project/create.html', {
-        'form': form,
-        'organization': organization
+      'form': form,
+      'organization': organization,
+      'section':'project',
     })
 
 @login_required
@@ -94,6 +98,7 @@ def project_list(request):
     
     return render(request, 'organization/project/list.html', {
         'projects': projects,
+        'section':'project',
         'status_choices': dict(Project.Status.choices),
         'funding_choices': dict(Project.FundingType.choices)
     })
@@ -109,6 +114,7 @@ def project_detail(request, pk):
     
     context = {
         'project': project,
+        'section':'project',
         'organization': organization_profile,
         'status_choices': dict(Project.Status.choices),
         'funding_choices': dict(Project.FundingType.choices),
