@@ -1,0 +1,57 @@
+{% extends 'organization/base.html' %}
+{% block title %}Report List{% endblock %}
+
+{% block content %}
+<section class="main-content">
+  <div class="report-detail">
+      <h2>{{ report }}</h2>
+      
+      <div class="report-metadata">
+          <div class="stats">
+              <div class="stat-item">
+                  <h3>Total Beneficiaries Reached</h3>
+                  <div class="stat-value">{{ report.total_reached }}</div>
+              </div>
+              <div class="demographic-breakdown">
+                  <h3>Demographic Breakdown</h3>
+                  <div class="breakdown-grid">
+                      <div class="breakdown-item women">
+                          <span class="label">Women</span>
+                          <span class="value">{{ report.women_reached }}</span>
+                      </div>
+                      <div class="breakdown-item men">
+                          <span class="label">Men</span>
+                          <span class="value">{{ report.men_reached }}</span>
+                      </div>
+                      <div class="breakdown-item youth">
+                          <span class="label">Youth</span>
+                          <span class="value">{{ report.youth_reached }}</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+  
+          <div class="projects-list">
+              <h3>Included Projects ({{ report.projects.count }})</h3>
+              <ul>
+                  {% for project in report.projects.all %}
+                  <li>
+                      <a href="{% url 'project_detail' project.pk %}">
+                          {{ project.name }}
+                      </a>
+                  </li>
+                  {% endfor %}
+              </ul>
+          </div>
+      </div>
+  
+      <div class="report-dates">
+          <p>Created: {{ report.created_at|date:"M d, Y H:i" }}</p>
+          <p>Last Updated: {{ report.updated_at|date:"M d, Y H:i" }}</p>
+      </div>
+  
+      <a href="{% url 'report_list' %}" class="back-link">← Back to Reports</a>
+  </div>
+
+</section>
+{% endblock %}

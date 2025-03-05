@@ -12,4 +12,8 @@ urlpatterns = [
   path('organization/projects/create/', views.create_project, name='create_project'),
   path('organization/projects/list', views.project_list, name='project_list'),
   path('organization/projects/<int:pk>/', views.project_detail, name='project_detail'),
+
+  path('organization/reports/create/', views.create_report, name='create_report'),
+  path('organization/reports/', views.report_list, name='report_list'),
+  # path('organization/reports/<int:pk>/', views.report_detail, name='report_detail'),
 ]

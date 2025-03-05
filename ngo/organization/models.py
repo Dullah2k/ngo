@@ -79,9 +79,42 @@ class Project(models.Model):
       ]
 
   def __str__(self):
-    return f"{self.name} - {self.organization.user.first_name}"
+      try:
+          return f"{self.organization.organization_profile.registration_number} - {self.get_quarter_display()} {self.year}"
+      except AttributeError:
+          return f"Report {self.id}"
 
   def is_active(self):
     return self.status == self.Status.ONGOING
 
+class Report(models.Model):
+    QUARTER_CHOICES = [
+        (1, 'Q1 - January to March'),
+        (2, 'Q2 - April to June'),
+        (3, 'Q3 - July to September'),
+        (4, 'Q4 - October to December'),
+    ]
 
+    organization = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='reports'
+    )
+    projects = models.ManyToManyField('Project', related_name='reports')
+    quarter = models.PositiveSmallIntegerField(choices=QUARTER_CHOICES)
+    year = models.PositiveIntegerField()
+    women_reached = models.PositiveIntegerField(default=0)
+    men_reached = models.PositiveIntegerField(default=0)
+    youth_reached = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('organization', 'quarter', 'year')
+        ordering = ['-year', '-quarter']
+
+    def __str__(self):
+        return f"{self.organization.first_name} - {self.get_quarter_display()} {self.year}"
+
+    def total_reached(self):
+        return self.women_reached + self.men_reached + self.youth_reached

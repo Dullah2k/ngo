@@ -122,3 +122,40 @@ def project_detail(request, pk):
     }
     return render(request, 'organization/project/details.html', context)
 
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from .models import Report
+from .forms import ReportForm
+
+@login_required
+def create_report(request):
+    if request.method == 'POST':
+        form = ReportForm(request.POST, user=request.user)  # Pass user to form
+        if form.is_valid():
+            report = form.save(commit=False)
+            report.organization = request.user
+            report.save()
+            form.save_m2m()
+            messages.success(request, 'Report submitted successfully!')
+            return redirect('organization:report_list')
+    else:
+        form = ReportForm(user=request.user)  # Pass user to form
+
+    return render(request, 'organization/reports/create.html', {'form': form})
+
+@login_required
+def report_list(request):
+    reports = Report.objects.filter(organization=request.user)
+    return render(request, 'organization/reports/list.html', {'reports': reports})
+
+
+# @login_required
+# def report_detail(request, pk):
+    report = get_object_or_404(
+        Report.objects.select_related('organization__user'),
+        pk=pk,
+        organization=request.user.organization_profile
+    )
+    return render(request, 'organization/reports/detail.html', {'report': report, 'section':'report'})
+

@@ -1,0 +1,95 @@
+{% extends 'organization/base.html' %}
+{% block title %}Create New Report{% endblock %}
+
+
+{% block content %}
+
+<style>
+  .project-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-details {
+    flex-grow: 1;
+}
+
+.project-details strong {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+</style>
+
+<section class="main-content">
+  <div class="report-form">
+      <h2>Create Quarterly Report</h2>
+      
+      <form method="post">
+          {% csrf_token %}
+          
+          <div class="form-section">
+              <h3>Reporting Period</h3>
+              <div class="form-group">
+                  {{ form.year.label_tag }}
+                  {{ form.year }}
+                  {{ form.year.errors }}
+              </div>
+              <div class="form-group">
+                  {{ form.quarter.label_tag }}
+                  {{ form.quarter }}
+                  {{ form.quarter.errors }}
+              </div>
+          </div>
+  
+          <div class="form-section">
+            <h3>Projects Included</h3>
+            <div class="checkbox-group">
+                {% for project in form.projects %}
+                <label class="project-checkbox">
+                    {{ project.tag }}
+                    <span class="project-details">
+                        <strong>{{ project.choice_label }}</strong><br>
+                        Status: {{ project.instance.get_status_display }}<br>
+                        Beneficiaries: {{ project.instance.beneficiaries|default:"Not specified" }}
+                    </span>
+                </label>
+                {% endfor %}
+            </div>
+            {{ form.projects.errors }}
+          </div>
+  
+          <div class="form-section">
+              <h3>Beneficiary Reach</h3>
+              <div class="reach-fields">
+                  <div class="form-group">
+                      {{ form.women_reached.label_tag }}
+                      {{ form.women_reached }}
+                      {{ form.women_reached.errors }}
+                  </div>
+                  <div class="form-group">
+                      {{ form.men_reached.label_tag }}
+                      {{ form.men_reached }}
+                      {{ form.men_reached.errors }}
+                  </div>
+                  <div class="form-group">
+                      {{ form.youth_reached.label_tag }}
+                      {{ form.youth_reached }}
+                      {{ form.youth_reached.errors }}
+                  </div>
+              </div>
+          </div>
+  
+          <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Submit Report</button>
+              <a href="{% url 'organization:report_list' %}" class="btn btn-secondary">Cancel</a>
+          </div>
+      </form>
+  </div>
+</section>
+
+{% endblock %}

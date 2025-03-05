@@ -27,7 +27,7 @@
 				</div>
 
 				<div class="nav-user">
-					<img src="assets/images/blank-profile-picture-973460_1280.png" alt="profile-img">
+					<img src="{% static 'assets/images/blank-profile-picture-973460_1280.png' %}" alt="profile-img">
 				</div>
 			</nav>
 		</div>
@@ -63,8 +63,8 @@
 						</a>
 					</li>
 					
-					<li>
-						<a href="#" class="side-item">
+					<li {% if section == 'report' %}class="active-item"{% endif %}>
+						<a href="{% url 'organization:report_list' %}" class="side-item">
 							<i class="bi bi-graph-up-arrow"></i>
 							<p>Reports and Analytics</p>
 						</a>

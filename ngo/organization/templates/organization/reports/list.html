@@ -1,0 +1,53 @@
+{% extends 'organization/base.html' %}
+{% block title %}Report List{% endblock %}
+
+{% block content %}
+<section class="main-content">
+  <div class="report-list">
+      <div class="list-header">
+          <h2>Your Quarterly Reports</h2>
+          <a href="{% url 'organization:create_report' %}" class="btn btn-primary">
+              + New Report
+          </a>
+      </div>
+  
+      {% if reports %}
+      <table class="report-table">
+          <thead>
+              <tr>
+                  <th>Period</th>
+                  <th>Projects</th>
+                  <th>Total Reach</th>
+                  <th>Women</th>
+                  <th>Men</th>
+                  <th>Youth</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for report in reports %}
+              <tr>
+                  <td>{{ report.get_quarter_display }} {{ report.year }}</td>
+                  <td>{{ report.projects.count }}</td>
+                  <td>{{ report.total_reached }}</td>
+                  <td>{{ report.women_reached }}</td>
+                  <td>{{ report.men_reached }}</td>
+                  <td>{{ report.youth_reached }}</td>
+                  <td>
+                      <a href="#" class="btn btn-sm btn-view">View</a>
+                  </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+      {% else %}
+      <div class="no-reports">
+          <p>No reports found. Create your first quarterly report!</p>
+          <a href="{% url 'organization:create_report' %}" class="btn btn-primary">
+              Create Report
+          </a>
+      </div>
+      {% endif %}
+  </div>
+</section>
+{% endblock %}
